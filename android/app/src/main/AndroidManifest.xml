@@ -1,0 +1,83 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.cubbie_webserver_migration">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="com.cubbie_mediamanager_migration.permission.INTERACT" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@drawable/ic_launcher"
+      android:theme="@style/AppTheme"
+      android:allowBackup="false"
+      android:persistent="true"
+      android:requestLegacyExternalStorage="true"
+      android:usesCleartextTraffic="true">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="cubbie_webserver_migration" />
+        </intent-filter>
+      </activity>
+      <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+      <service android:name="com.voximplant.foregroundservice.VIForegroundService"> </service>
+      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <service
+
+         android:name="com.cubbie_webserver_migration.ExampleService"
+
+         android:enabled="true"
+
+         android:exported="false" >
+
+     </service>
+
+     <service
+
+         android:name="com.cubbie_webserver_migration.ExampleEventService">
+
+     </service>
+
+     <receiver
+
+         android:name="com.cubbie_webserver_migration.BootReceiver"
+        android:exported="true"
+         android:enabled="true"
+
+         android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
+         <intent-filter>
+
+             <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+             <category android:name="android.intent.category.DEFAULT" />
+
+         </intent-filter>
+
+     </receiver>
+    </application>
+</manifest>
